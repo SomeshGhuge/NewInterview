@@ -3,26 +3,75 @@ package com.example.new_interview.new_interview.model;
 import jakarta.persistence.*;
 import java.util.List;
 
-//Data
-//@Getter
-//@Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@ToString
+/**
+ * Course Entity Class
+ * 
+ * JPA Annotations Used:
+ * @Entity: Marks this class as a JPA entity that can be persisted to the database
+ * @Table: Specifies the database table name (default would be class name in lowercase)
+ * 
+ * Why use JPA annotations?
+ * - Enables Object-Relational Mapping (ORM)
+ * - Reduces boilerplate SQL code
+ * - Provides database independence
+ * 
+ * Alternative approaches:
+ * - Could use raw JDBC (more control but more code)
+ * - Could use Spring JDBC Template
+ * - Could use MyBatis for SQL mapping
+ */
 @Entity
 @Table(name="course")
 public class Course {
 
+    /**
+     * Primary Key Configuration
+     * @Id: Marks this field as the primary key
+     * @GeneratedValue: Configures how the primary key is generated
+     * - strategy = GenerationType.IDENTITY: Uses database auto-increment
+     * 
+     * Why use IDENTITY strategy?
+     * - Simple and widely supported
+     * - Good for single-database applications
+     * - Automatic value generation
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
 
+    /**
+     * Basic column mappings
+     * @Column: Maps Java field to database column
+     * - name: Specifies the column name in the database
+     */
     @Column(name="courseName")
     private String courseName;
+    
     @Column(name="teacherName")
     private String teacherName;
 
+    /**
+     * Many-to-Many Relationship Configuration
+     * @ManyToMany: Defines a many-to-many relationship with Student entity
+     * - cascade = CascadeType.ALL: Propagates all operations to related entities
+     * - fetch = FetchType.EAGER: Loads related entities immediately
+     * 
+     * @JoinTable: Configures the join table for the many-to-many relationship
+     * - name: Specifies the join table name
+     * - joinColumns: Defines the foreign key for this entity
+     * - inverseJoinColumns: Defines the foreign key for the related entity
+     * 
+     * Why use EAGER fetching?
+     * - Immediate loading of related data
+     * - Reduces N+1 query problem
+     * - Better for small, frequently accessed relationships
+     * 
+     * Alternative approaches:
+     * - LAZY fetching (load on demand)
+     * - Custom query with JOIN FETCH
+     * - Separate service layer for relationship management
+     */
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
         name = "course_student",
