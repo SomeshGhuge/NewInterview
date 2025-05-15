@@ -1,7 +1,8 @@
-package com.example.new_interview.new_interview.service;
+package com.example.new_interview.new_interview.service.serviceImpl;
 
 import com.example.new_interview.new_interview.model.Course;
 import com.example.new_interview.new_interview.repository.CourseRepository;
+import com.example.new_interview.new_interview.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

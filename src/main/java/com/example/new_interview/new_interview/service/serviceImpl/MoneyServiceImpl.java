@@ -1,7 +1,8 @@
-package com.example.new_interview.new_interview.service;
+package com.example.new_interview.new_interview.service.serviceImpl;
 
 import com.example.new_interview.new_interview.model.Money;
 import com.example.new_interview.new_interview.repository.MoneyRepository;
+import com.example.new_interview.new_interview.service.MoneyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
