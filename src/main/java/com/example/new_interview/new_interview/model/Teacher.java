@@ -1,13 +1,17 @@
 package com.example.new_interview.new_interview.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
-import java.util.List;
+import lombok.*;
 
 @Entity
 @Table(name="teacher")
+@Getter
+@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Teacher {
     private Long id;
     private String teacherName;

@@ -1,9 +1,16 @@
 package com.example.new_interview.new_interview.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name="medals")
+@Getter
+@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Medals {
 
     @Id

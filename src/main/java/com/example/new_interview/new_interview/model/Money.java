@@ -1,10 +1,16 @@
 package com.example.new_interview.new_interview.model;
 
 import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.web.WebProperties;
+import lombok.*;
 
 @Entity
 @Table(name="money")
+@Getter
+@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Money {
 
     @Id
