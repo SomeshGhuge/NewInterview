@@ -1,6 +1,7 @@
 package com.example.new_interview.new_interview.model;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 //Data
 //@Getter
@@ -22,17 +23,22 @@ public class Course {
     @Column(name="teacherName")
     private String teacherName;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private Student student;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "course_student",
+        joinColumns = @JoinColumn(name = "course_id"),
+        inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private List<Student> students;
 
     public Course() {
     }
 
-    public Course(Long id, String courseName, String teacherName, Student student) {
+    public Course(Long id, String courseName, String teacherName, List<Student> students) {
         this.id = id;
         this.courseName = courseName;
         this.teacherName = teacherName;
-        this.student = student;
+        this.students = students;
     }
 
     public Long getId() {
@@ -59,12 +65,12 @@ public class Course {
         this.teacherName = teacherName;
     }
 
-    public Student getStudent() {
-        return student;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
     @Override
@@ -73,7 +79,7 @@ public class Course {
                 "id=" + id +
                 ", courseName='" + courseName + '\'' +
                 ", teacherName='" + teacherName + '\'' +
-                ", student=" + student +
+                ", students=" + students +
                 '}';
     }
 }
