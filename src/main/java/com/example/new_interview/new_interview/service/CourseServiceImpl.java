@@ -67,8 +67,8 @@ public class CourseServiceImpl implements CourseService {
         if (partialCourse.getTeacherName() != null) {
             existingCourse.setTeacherName(partialCourse.getTeacherName());
         }
-        if (partialCourse.getStudent() != null) {
-            existingCourse.setStudent(partialCourse.getStudent());
+        if (partialCourse.getStudents() != null) {
+            existingCourse.setStudents(partialCourse.getStudents());
         }
 
         return courseRepository.save(existingCourse);
